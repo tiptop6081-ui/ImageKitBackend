@@ -22,6 +22,16 @@ const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
     res.send("ImageKit Backend is running!");
+
+});
+
+app.get("/test-android", (req, res) => {
+    console.log("🔥 ANDROID TEST REQUEST RECEIVED");
+
+    res.json({
+        success: true,
+        message: "Android can reach Render!"
+    });
 });
 
 app.get("/test-imagekit", (req, res) => {
