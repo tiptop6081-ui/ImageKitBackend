@@ -78,6 +78,8 @@ app.listen(PORT, "0.0.0.0", () => {
 });
 
 app.post("/upload", upload.single("image"), async (req, res) => {
+
+console.log("🔥 /upload REQUEST RECEIVED");
     try {
         if (!req.file) {
             return res.status(400).json({
