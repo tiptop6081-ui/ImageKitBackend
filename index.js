@@ -18,7 +18,7 @@ const imagekit = new ImageKit({
     privateKey: process.env.IMAGEKIT_PRIVATE_KEY
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
     res.send("ImageKit Backend is running!");
