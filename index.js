@@ -6,6 +6,18 @@ const multer = require("multer");
 const fs = require("fs");
 const https = require("https");
 
+const admin = require("firebase-admin");
+
+const serviceAccount =
+    require("/etc/secrets/firebase-service-account.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL:
+        "https://onlinestore2-ba484-default-rtdb.firebaseio.com"
+});
+
+
 const upload = multer({
     dest: "uploads/"
 });
