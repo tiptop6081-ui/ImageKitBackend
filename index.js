@@ -9,7 +9,7 @@ const https = require("https");
 const admin = require("firebase-admin");
 
 const serviceAccount =
-    require("/etc/secrets/firebase-service-account.json");
+    require("/etc/secrets/onlinestore2-ba484-firebase-adminsdk-fbsvc-dc98a7.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
