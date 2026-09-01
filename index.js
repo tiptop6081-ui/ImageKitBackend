@@ -8,11 +8,20 @@ const https = require("https");
 
 const admin = require("firebase-admin");
 
-const serviceAccount =
-    require("/etc/secrets/onlinestore2-ba484-firebase-adminsdk-fbsvc-dc5ab498a7.json");
+const path = require("path");
+
+const serviceAccountPath = process.env.RENDER
+    ? "/etc/secrets/onlinestore2-ba484-firebase-adminsdk-fbsvc-dc5ab498a7.json"
+    : path.join(
+        process.env.USERPROFILE,
+        "ImageKitBackend",
+        "onlinestore2-ba484-firebase-adminsdk-fbsvc-dc5ab498a7.json"
+    );
+
+const serviceAccount = require(serviceAccountPath);
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+     credential: admin.cert(serviceAccount),
     databaseURL:
         "https://onlinestore2-ba484-default-rtdb.firebaseio.com"
 });
