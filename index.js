@@ -142,3 +142,31 @@ console.log("🔥 /upload REQUEST RECEIVED");
         });
     }
 });
+
+app.get("/test-firebase-full", (req, res) => {
+    const url =
+        "https://onlinestore2-ba484-default-rtdb.firebaseio.com/products.json";
+
+    https.get(url, (firebaseRes) => {
+
+        let data = "";
+
+        firebaseRes.on("data", (chunk) => {
+            data += chunk;
+        });
+
+        firebaseRes.on("end", () => {
+            res.status(firebaseRes.statusCode || 500).send(data);
+        });
+
+    }).on("error", (error) => {
+
+        console.error("Firebase full test error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    });
+});
+
